@@ -1,0 +1,54 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class MovePlayer : MonoBehaviour
+{
+
+    private PlayerInputActions playerInput;
+    private Rigidbody2D rb;
+    //public Animator animator;
+    private float moveInput;
+    //private Vector2 jumpInput;
+    [SerializeField] private float speed = 8f;
+    //[SerializeField] private float jumpForce = 16f;
+
+    void Awake()
+    {
+        playerInput = new PlayerInputActions();
+        rb = GetComponent<Rigidbody2D>();
+    }
+    private void OnEnable()
+    {
+        playerInput.Enable();
+    }
+
+    private void OnDisable()
+    {
+        playerInput.Disable();
+    }
+
+    public void OnMove()
+    {
+        moveInput = playerInput.Player.Move.ReadValue<Vector2>().x;
+
+        Debug.Log(playerInput.Player.Move.ReadValue<Vector2>());
+        Debug.Log(playerInput.Player.Move);
+        //animator.SetFloat("Horizontal", moveInput.x);
+        //animator.SetFloat("Speed", moveInput.sqrMagnitude);
+    }
+
+    public void OnJump()
+    {
+        //jumpInput = playerInput.Movement.Jump.performed(); ;
+        //rb.velocity = jumpInput * jumpForce;
+    }
+
+    void FixedUpdate()
+    {
+        rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
+        //rb.velocity = jumpInput * jumpForce;
+    }
+
+
+}
