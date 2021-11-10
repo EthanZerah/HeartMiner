@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -14,8 +13,6 @@ public class PlayerHealth : MonoBehaviour
 
     public SpriteRenderer spriteRenderer;
     public AdvancedHealth healthBar;
-    public GameOver gameOverUI;
-    public GameObject victoryUI;
 
     // Start is called before the first frame update
     void Start()
@@ -51,7 +48,7 @@ public class PlayerHealth : MonoBehaviour
     public void Death()
     {
         healthBar.setHealth(0);
-        gameOverUI.Show();
+        StartCoroutine(GameOver());
     }
 
     public void Heal()
@@ -70,10 +67,6 @@ public class PlayerHealth : MonoBehaviour
             maxHealth += 1;
             currentHealth = maxHealth;
             healthBar.setMaxHealth(maxHealth);
-        }
-        if (maxHealth == 6)
-        {
-            StartCoroutine(LoadVictory());
         }
     }
 
@@ -94,11 +87,10 @@ public class PlayerHealth : MonoBehaviour
         canTakeDamage = true;
     }
 
-    public IEnumerator LoadVictory()
+    public IEnumerator GameOver()
     {
-        yield return new WaitForSeconds(0.3f);
-        victoryUI.SetActive(true);
-        yield return new WaitForSeconds(1.0f);
+        fadeGameOver.SetTrigger("FadeIn");
+        yield return new WaitForSeconds(1f);
         SceneManager.LoadScene(0);
     }
 

@@ -15,7 +15,6 @@ public class PlayerHealth : MonoBehaviour
     public SpriteRenderer spriteRenderer;
     public AdvancedHealth healthBar;
     public GameOver gameOverUI;
-    public GameObject victoryUI;
 
     // Start is called before the first frame update
     void Start()
@@ -96,8 +95,8 @@ public class PlayerHealth : MonoBehaviour
 
     public IEnumerator LoadVictory()
     {
-        yield return new WaitForSeconds(0.3f);
-        victoryUI.SetActive(true);
+        yield return new WaitForSeconds(1.0f);
+
         yield return new WaitForSeconds(1.0f);
         SceneManager.LoadScene(0);
     }
