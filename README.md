@@ -8,7 +8,11 @@ Objectifs: Réaliser un petit jeu 2D en Pixel Art comme vu en cours
 
 
 Game Developer : Ethan ZERAH
+
 Game Designer : Ethan ZERAH
+
 Level Designer : Ethan ZERAH
+
 Sound Designer : Ethan ZERAH
+
 2D Artist : "Buch"
